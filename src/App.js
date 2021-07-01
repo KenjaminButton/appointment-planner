@@ -1,26 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Switch, Route, Redirect, NavLink } from "react-router-dom";
+
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
 function App() {
-
-  // Define state variables for contacts and appointments
+  /*
+  Define state variables for 
+  contacts and appointments 
+  */
   const [contacts, setContacts] = useState([]);
-  const [appointments, setAppointments] = useState([])
-  /*
-  Define a callback function that, given a name, phone number, and email,
-  adds a new contact object with that data to the array of contacts
-  */
-  // Difference is with the return in the callback function
-  // const addContact = (name, phone, email) => {setContacts(prevContacts => { return […prevContacts, {name, phone, email}]})};
-  const addContact = (name, phone, email) => {setContacts(prev => [...prev, {name, phone, email}])}
-  /*
-  Define a callback function that, given a title, contact, date, and time,
-  adds a new appointment object with that data to the array of appointments
-  */
-  const addAppointment = (title, contact, date, time) => {setAppointments(prev => [...prev, {title, contact, date, time}])}
-  
+  const [appointments, setAppointments] = useState([]);
+
 
   const ROUTES = {
     CONTACTS: "/contacts",
@@ -48,19 +39,12 @@ function App() {
             <Redirect to={ROUTES.CONTACTS} />
           </Route>
           <Route path={ROUTES.CONTACTS}>
-          {/* Pass the array of contacts and the appropriate callback function as props to the ContactsPage component */}
-            <ContactsPage
-              contacts={contacts}
-              addContact={addContact}
-            />
+             {/* Add props to ContactsPage */}
+            <ContactsPage />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
-            {/* Pass the appointments array, contacts array, and the add appointment function as props to the AppointmentsPage component */}
-            <AppointmentsPage 
-              appointments={appointments}
-              contacts={contacts}
-              addAppointment={addAppointment}
-            />
+            {/* Add props to AppointmentsPage */}
+            <AppointmentsPage />
           </Route>
         </Switch>
       </main>
