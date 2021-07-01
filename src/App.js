@@ -23,6 +23,19 @@ function App() {
   contacts and appointments
   */
 
+  const addContact = (name, phone, email) => {
+    setContacts( prev => [...prev, {name, phone, email}]);
+  }
+
+  const addAppointment = (title, contact, date, time) => {
+    setAppointments( prev => [...prev, {title, contact, date, time}]);
+  }
+
+  
+
+
+  
+
   return (
     <>
       <nav>
