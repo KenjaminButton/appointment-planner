@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ContactForm } from '../../components/contactForm/ContactForm.js';
+import { TileList } from '../../components/tileList/TileList.js';
 
 export const ContactsPage = (props) => {
   const contacts = props.contacts;
@@ -61,6 +62,7 @@ export const ContactsPage = (props) => {
       <hr />
       <section>
         <h2>Contacts</h2>
+        <TileList objArr={props.contacts} />
       </section>
     </div>
   );

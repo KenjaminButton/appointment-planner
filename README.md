@@ -125,7 +125,7 @@ const handleSubmit = (e) => {
   - handleSubmit callback function
 Import the ContactForm component with the following: 
 ```javascript
-import ContactForm from '../../components/contactForm/ContactForm';
+import { ContactForm } from '../../components/contactForm/ContactForm';
 ```
 Now, under the h2 Add Contact, import the ContactForm component with the following props:
 ```javascript
@@ -139,6 +139,13 @@ Now, under the h2 Add Contact, import the ContactForm component with the followi
   handleSubmit={handleSubmit}
 />
 ```
+3f. "In the Contacts section, render a TileList with the contact array passed via props"
+Under h2 Contacts, add the TileList component with the prop key to "objArr".
+```Javascript
+<TileList objArr={props.contacts} />
+```
+Import TileList component with the following:
+import { TileList } from '../../components/tileList/TileList.js';
 
 
 
