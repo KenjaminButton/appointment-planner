@@ -19,7 +19,7 @@ function App() {
   };
 
   /*
-  Implement functions to add data to
+  Implemented functions to add data to
   contacts and appointments
   */
 
@@ -30,11 +30,6 @@ function App() {
   const addAppointment = (title, contact, date, time) => {
     setAppointments( prev => [...prev, {title, contact, date, time}]);
   }
-
-  
-
-
-  
 
   return (
     <>
@@ -53,11 +48,11 @@ function App() {
           </Route>
           <Route path={ROUTES.CONTACTS}>
              {/* Add props to ContactsPage */}
-            <ContactsPage />
+            <ContactsPage addContact={addContact} />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
             {/* Add props to AppointmentsPage */}
-            <AppointmentsPage />
+            <AppointmentsPage addAppointment={addAppointment} />
           </Route>
         </Switch>
       </main>
