@@ -25,7 +25,7 @@ export const ContactsPage = (props) => {
     */
     if (!duplicate) {
       addContact(name, phone, email);
-      // Reset values
+      // "A successful submission should clear the form"
       setName('');
       setPhone('');
       setEmail('');

@@ -59,6 +59,8 @@ Note: In ContactsPage.js, inside the ContactsPage component, add the following:
 Now, the page will not currently load - the error message of 'props is not defined' can be fixed by adding props as an input to the ContactsPage component. Change the function definition as follows:
 ```javascript
   export const ContactsPage = (props) => {
+    ...
+  }
 ```
 The page should load properly again.
 
@@ -111,7 +113,7 @@ const handleSubmit = (e) => {
   */
   if (!duplicate) {
     addContact(name, phone, email);
-    // Reset values
+    // "A successful submission should clear the form"
     setName('');
     setPhone('');
     setEmail('');
@@ -145,8 +147,25 @@ Under h2 Contacts, add the TileList component with the prop key to "objArr".
 <TileList objArr={props.contacts} />
 ```
 Import TileList component with the following:
+```Javascript
 import { TileList } from '../../components/tileList/TileList.js';
+```
 
+### Implement ContactForm as a stateless component that renders a web form to collect the necessary contact information
+
+4a. Render a form with the onSubmit attribute set
+In the return statement, add an HTML form tab. 
+Note: Common protocol to name attribute "onSubmit" to the "handleSubmit" handler as stated in the React documentation.
+```javascript
+<form onSubmit={handleSubmit}>
+  
+</form>
+```
+
+
+
+4b. Render a form with 3 controlled <input> elements, one for each piece of contact data
+4c. Render a form with the a submit button
 
 
 
