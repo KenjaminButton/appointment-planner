@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const ContactsPage = () => {
+export const ContactsPage = (props) => {
+  const contacts = props.contacts;
+  const addContact = props.addContact;
+
   /*
   Define state variables for 
   contact info and duplicate check
   */
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('');
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
