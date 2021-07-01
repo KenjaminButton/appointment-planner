@@ -43,7 +43,7 @@ export const ContactsPage = (props) => {
       }
       // return
     }
-  });
+  }, [contacts, name]);
 
   return (
     <div>

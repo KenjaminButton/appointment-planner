@@ -155,17 +155,52 @@ import { TileList } from '../../components/tileList/TileList.js';
 
 4a. Render a form with the onSubmit attribute set
 In the return statement, add an HTML form tab. 
-Note: Common protocol to name attribute "onSubmit" to the "handleSubmit" handler as stated in the React documentation.
+Note: Common protocol to name attribute "onSubmit" to the "handleSubmit" handler as stated in the React documentation. 
 ```javascript
 <form onSubmit={handleSubmit}>
-  
+
+</form>
+```
+However, we can also label the attribute as follows: 
+```javascript
+<form handleSubmit={handleSubmit}>
+
 </form>
 ```
 
-
-
 4b. Render a form with 3 controlled <input> elements, one for each piece of contact data
+Inside the form tag, nest the following inputs:
+```javascript
+<form onSubmit={handleSubmit}>
+  <input
+    value={name}
+    type="text"
+    onChange={target => setName(target.value)}
+    required
+  />
+  <input
+    value={phone}
+    type="tel"
+    // 4d. A pattern attribute to the phone <input> with a regex (USA)
+    pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$"
+    onChange={target => setPhone(target.value)}
+    required
+  />
+  <input
+    value={email}
+    type="email"
+    onChange={target => setEmail(target.value)}
+    required
+  />
+</form>
+```
 4c. Render a form with the a submit button
+Inside the form, create a submit button.
+```javascript
+  <input
+    type="submit"
+  />
+```
 
 
 
