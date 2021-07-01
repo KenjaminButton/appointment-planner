@@ -78,4 +78,75 @@ Now add the following below our definition of name state variables (for phone an
   const [email, setEmail] = useState('Gmail');
 ```
 
-3c "Check for duplicates whenever the name in the form changes and indicate the name is a duplicate"
+3c. "Check for duplicates whenever the name in the form changes and indicate the name is a duplicate"
+Define state variables for duplicate check (with a default value of false) to the following:
+```javascript
+  const [duplicate, setDuplicate] = useState(false);
+```
+
+Checking if name matches contacts.name - if it does match, set setDuplicate state to true.
+/* Using hooks, check for contact name in the contacts array variable in props */
+Note: I will be using the useEffect hook here so make sure to import it at the top of the file, next to useState. 
+```javascript
+  // check for contact name in the contacts array variable in props
+  useEffect( () => {
+    for (const contact of contacts) {
+      if (name === contact.name) {
+        setDuplicate(true);
+      }
+
+      return;
+    }
+  });
+```
+
+3d. "Only add a new contact on form submission if it does not duplicate an existing contact’s name"
+Now inside the handleSubmit handler, check for duplicate, then add the contact information if it is not a duplicate.
+```javascript
+const handleSubmit = (e) => {
+  e.preventDefault();
+  /*
+  Add contact info and clear data
+  if the contact name is not a duplicate
+  */
+  if (!duplicate) {
+    addContact(name, phone, email);
+    // Reset values
+    setName('');
+    setPhone('');
+    setEmail('');
+  }
+};
+```
+
+3e. "In the Add Contact section, render a ContactForm with the following passed via props:
+  - local state variables
+  - local state variable setter functions
+  - handleSubmit callback function
+Import the ContactForm component with the following: 
+```javascript
+import ContactForm from '../../components/contactForm/ContactForm';
+```
+Now, under the h2 Add Contact, import the ContactForm component with the following props:
+```javascript
+<ContactForm
+  name={name}
+  setName={setName}
+  phone={phone}
+  setPhone={setPhone}
+  email={email}
+  setEmail={setEmail}
+  handleSubmit={handleSubmit}
+/>
+```
+
+
+
+
+
+
+
+
+
+
+
