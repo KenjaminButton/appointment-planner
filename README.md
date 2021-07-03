@@ -34,9 +34,17 @@ const addAppointment = (title, contact, date, time) => {
 }
 ```
 2d. "Pass the array of contacts and the appropriate callback function as props to the ContactsPage component"
+"Array of contacts" is: 
+```javascript
+contacts={contacts}
+```
+"Appropriate callback function" is:
+```javascript
+addContact={addContact}
+```
 In App.js, add the following properties in App.js's ContactsPage component (underneath the {/* Add props to ContactsPage */} comment):
 ```javascript
-<ContactsPage addContact={addContact} />
+<ContactsPage contacts={contacts} addContact={addContact}  />
 ```
 2e. "Pass the appointments array, and the add appointment function as props to the AppointmentsPage component"
 In App.js, add the following properties in App.js's AppointmentsPage component (underneath the {/* Add props to AppointmentsPage */} comment):
@@ -144,7 +152,7 @@ Now, under the h2 Add Contact, import the ContactForm component with the followi
 3f. "In the Contacts section, render a TileList with the contact array passed via props"
 Under h2 Contacts, add the TileList component with the prop key to "objArr".
 ```Javascript
-<TileList objArr={props.contacts} />
+<TileList somethingArbitrary={contacts} />
 ```
 Import TileList component with the following:
 ```Javascript
@@ -202,11 +210,41 @@ Inside the form, create a submit button.
   />
 ```
 
+### Implement TileList as a stateless component that renders a list of Tile components using an array of objects.
+
+5a. Receive one prop:
+      An array of objects to render as a list.
+```javascript
+export const TileList = (arrayOfObjects) => {
+  ...
+};
+```
+
+5b. Use the array passed via props to iteratively render Tile components, passing each object (Individual contact object) in the array (App.js's contacts array) as a prop to each rendered Tile component.
+```javascript
+export const TileList = (objectsInArray) => {
+  {objectsInArray.map( (index, value) => <Tile key={index} value={value} /> )}
+};
+```
+
+Now,  an error message saying "'Tile' is not defined" so fix that issue at the top of the file.
+
+The following error message will appear. 
+
+TypeError: Cannot read property 'map' of undefined
+TileList
+src/components/tileList/TileList.js:6
+
+To fix issue, open the ContactsPage.js file and change the TileList component's attribute from "somethingArbitrary" to "objectsInArray"
+```javascript
+<TileList objectsInArray={contacts} />
+```
 
 
+Note: The requirements for the TileList component are generalized and allow it to be shared by the ContactsPage and AppointmentsPage components. As long as an array of objects with either the contact data or appointments data is passed then the content will be handled appropriately.
 
 
-
+6. 
 
 
 
