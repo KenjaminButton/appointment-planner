@@ -220,7 +220,7 @@ export const TileList = (arrayOfObjects) => {
 };
 ```
 
-5b. Use the array passed via props to iteratively render Tile components, passing each object (Individual contact object) in the array (App.js's contacts array) as a prop to each rendered Tile component.
+5b. Use the array passed via props to iteratively render Tile components, passing each object (Individual contact object) in the array (objectsInArray aka App.js's contacts array) as a prop to each rendered Tile component.
 ```javascript
 export const TileList = (objectsInArray) => {
   {objectsInArray.map( (index, value) => <Tile key={index} value={value} /> )}
@@ -240,12 +240,57 @@ To fix issue, open the ContactsPage.js file and change the TileList component's 
 <TileList objectsInArray={contacts} />
 ```
 
-
 Note: The requirements for the TileList component are generalized and allow it to be shared by the ContactsPage and AppointmentsPage components. As long as an array of objects with either the contact data or appointments data is passed then the content will be handled appropriately.
 
+### Implement Tile as a stateless component that renders the data from an object.
 
-6. 
+6a. In Tile.js, receive one prop: An object.
+Note: Take a look at TileList.js's <Tile /> component. That's where the input value comes from.
+```javascript
+export const Tile = ({value}) => {
+  return (
+    <div className="tile-container">
+      ...  
+    </div>
+  );
+};
+```
 
+6b. Iterate over the values in the object, passed in via props, and render a <p> element for each value
+```javascript
+export const Tile = ({value}) => {
+  const array = Object.values(value);
+  return (
+    <div className="tile-container">
+      // Implement Tile as a stateless component that renders the "data" from an object
+      {array.map( (data, index) => {
+        // Render a <p> element for each value
+        return <p key={index}> {data} </p>
+      })}
+    </div>
+  )
+};
+```
+
+
+6c. Give a className of "tile-title" to the first <p> element
+Inside tile-container class, for the Tile.js file, write the following input statement.
+```javascript
+if (index === 0) {
+  return <p className="tile-title" key={index}> {data} </p>
+}
+
+```
+
+
+6d. Give a className of "tile" to all other <p> elements
+```javascript
+if (index === 0) {
+  return <p className="tile-title" key={index}> {data} </p>
+} else {
+  return <p className="tile" key={index}> {data} </p>
+}
+```
 
 
 

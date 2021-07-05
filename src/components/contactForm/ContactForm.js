@@ -14,20 +14,20 @@ export const ContactForm = ({
       <input 
         value={name}
         type="text"
-        onChange={target => setName(target.value)}
+        onChange={({target}) => setName(target.value)}
         required
       />
       <input
         value={phone}
         type="tel"
         pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$"
-        onChange={target => setPhone(target.value)}
+        onChange={({target}) => setPhone(target.value)}
         required
       />
       <input
         type="email"
         value={email}
-        onChange={target => setEmail(target.value)}
+        onChange={({target}) => setEmail(target.value)}
         required
       />
       <input
