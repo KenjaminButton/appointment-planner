@@ -365,9 +365,92 @@ Note: Refer back to TileList.js and the input for the function, which is objects
 <TileList objectsInArray={appointments} />
 ```
 
+### Implement AppointmentForm as a stateless component that renders a web form to collect the necessary appointment information. AppointmentForm.js
+
+Render a form with:
+The onSubmit attribute set to the callback function passed in via props
+3 controlled input components, to be used for the title, date and time appointment data
+A ContactPicker component with the contacts list passed in via props
+A submit button
+Use getTodayString() to set the min attribute of the date input
+
+8a. Render a form with:
+The onSubmit attribute set to the callback function passed in via props
+<form onSubmit={handleSubmit}>
+</form>
+
+8b. Render a form with:
+3 controlled input components, to be used for the title, date and time appointment data
+Note: inside the form tag, nest input tags (FYI: input tags are self closing here)
+```javascript
+return (
+  <form onSubmit={handleSubmit}>
+    <input
+      type="text"
+      onChange={({target}) => setTitle(target.value)}
+      value={title} 
+    />
+    <input
+      type="date"
+      value={date}
+      onChange={({target}) => setDate(target.value)}
+    />
+    <input
+      type="time"
+      value={time} 
+      onChange={({target}) => setTime(target.value)}
+    />
+  </form>
+);
+```
+
+8c. Render a form with:
+A ContactPicker component with the contacts list passed in via props
+Note: Inside the form tag, render the <ContactPicker /> component. Make sure to import the component on the top of the file.
+
+```javascript
+<ContactPicker
+  contacts={contacts}
+  value={contact}
+  onChange={({target}) => setContact(target.value)}
+/>
+```
+
+8d. Render a form with:
+A submit button
+Note: Inside form tags
+```javascript 
+  <input type="submit" />
+```
+
+8e. Use getTodayString() to set the min attribute of the date input
+Note: Inside the date input.
+```javascript
+<input 
+  type="date"
+  ...
+  min={getTodayString()}
+/>
+```
+
+Implement ContactPicker as a stateless component that renders a drop-down list of all contact names. ContactPicker.js
+
+ContactPicker Requirements:
+
+Receive 2 props: The array of contacts and a callback function to handle when the onChange event is triggered
+Note: Before the return statement retrieve contacts and onChange. Make sure the function receives a props variable.
+```javascript
+
+```
 
 
+Render a select element with the onChange attribute set to the callback passed in via props
+Have a default first option element that indicates no contact is selected
+Iteratively add option elements using the contact names from the array passed in via props
 
+
+```javascript
+```
 
 
 
