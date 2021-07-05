@@ -210,7 +210,7 @@ Inside the form, create a submit button.
   />
 ```
 
-### Implement TileList as a stateless component that renders a list of Tile components using an array of objects.
+### Implement TileList as a stateless component that renders a list of Tile components using an array of objects. TileList.js
 
 5a. Receive one prop:
       An array of objects to render as a list.
@@ -242,7 +242,7 @@ To fix issue, open the ContactsPage.js file and change the TileList component's 
 
 Note: The requirements for the TileList component are generalized and allow it to be shared by the ContactsPage and AppointmentsPage components. As long as an array of objects with either the contact data or appointments data is passed then the content will be handled appropriately.
 
-### Implement Tile as a stateless component that renders the data from an object.
+### Implement Tile as a stateless component that renders the data from an object. Tile.js
 
 6a. In Tile.js, receive one prop: An object.
 Note: Take a look at TileList.js's <Tile /> component. That's where the input value comes from.
@@ -291,6 +291,83 @@ if (index === 0) {
   return <p className="tile" key={index}> {data} </p>
 }
 ```
+
+### Implement AppointmentsPage as a stateful component that handles the logic for adding new appointments and listing current appointments. AppointmentsPage.js
+
+7a. Receive three props:
+    - The current list of appointments
+    - The current list of contacts
+
+First, insert props as the input variable for the function.
+To retrieve the list of appointments and contacts (from App.js), simply check the ContactsPage.js as an example.
+```javascript
+export const AppointmentsPage = (props) => {
+  const appointments = props.appointments;
+  const contacts = props.contacts;
+}
+```
+
+7b. - A callback function for adding a new appointment.
+Retrieving the App.js addAppointment callback function.
+```javascript
+const addAppointment = props.addAppointment
+```
+
+7c. Keep track of four local state variables, the current title, contact, date, and time entered into the form.
+Note: Inside the handleSubmit function, (similar to ContactsPage.js) write the following: 
+```javascript
+const [title, setTitle] = useState('');
+const [contact, setContact] = useState('');
+const [date, setDate] = useState('');
+const [time, setTime] = useState('');
+```
+
+7d. Add a new appointment to form submission.
+Note: Duplicates are accepted here.
+```javascript
+addAppointment(title, contact, date, time)
+```
+
+7e. Clear the form on submission
+Note: Use the state variables defined above to clear data upon submission of form.
+```javascript
+setTitle('');
+setContact('');
+setDate('');
+setTime('')
+```
+
+7f. In the Add Appointment section, render an AppointmentForm with the following passed via props:
+local state variables
+local state variable setter functions
+handleSubmit callback function
+Note: Add the contacts variable, referring to the contacts property, defined above. 
+```javascript
+<AppointmentForm 
+  title={title}
+  setTitle={setTitle}
+  contact={contact}
+  setContact={setContact}
+  date={date}
+  setDate={setDate}
+  time={time}
+  setTime={setTime}
+  handleSubmit={handleSubmit}
+  contacts={contacts}
+/>
+```
+
+7g. In the Appointments section, render a TileList with the appointment array passed via props
+Note: Appointments section is referring to <h2>Appointments</h2>. Make sure to import TileList component.
+Note: Refer back to TileList.js and the input for the function, which is objectsInArray. The property would be appointments.
+
+```javascript
+<TileList objectsInArray={appointments} />
+```
+
+
+
+
 
 
 
