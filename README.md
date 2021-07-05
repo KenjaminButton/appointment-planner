@@ -433,23 +433,47 @@ Note: Inside the date input.
 />
 ```
 
-Implement ContactPicker as a stateless component that renders a drop-down list of all contact names. ContactPicker.js
+### Implement ContactPicker as a stateless component that renders a drop-down list of all contact names. ContactPicker.js
 
-ContactPicker Requirements:
-
-Receive 2 props: The array of contacts and a callback function to handle when the onChange event is triggered
+9a. Receive 2 props: The array of contacts and a callback function to handle when the onChange event is triggered
 Note: Before the return statement retrieve contacts and onChange. Make sure the function receives a props variable.
 ```javascript
+export const ContactPicker = (props) => {
+  const contacts = props.contacts
+  const onChange= props.onChange
+  return (
+    ...
+  );
+};
+```
+
+9b. Render a select element with the onChange attribute set to the callback passed in via props
+Note: [Check the select html rules](https://www.w3schools.com/tags/tag_select.asp) I chose not to pass the name or id attribute here.
+
+```javascript
+<select onChange={onChange}>
+  
+</select>
+```
+
+9c. Have a default first option element that indicates no contact is selected
+Note: [Option Element Rules](https://www.w3schools.com/tags/tag_option.asp)
+I will pass the value attribute here.
+
+```javascript
+<option value="">
+  Choose something 😬
+</option>
 
 ```
 
 
-Render a select element with the onChange attribute set to the callback passed in via props
-Have a default first option element that indicates no contact is selected
-Iteratively add option elements using the contact names from the array passed in via props
+9d. Iteratively add option elements using the contact names from the array passed in via props
+Note: Below the previous option tag, Nested inside select tag only, not the option tag. I am adding another option tag below the default tag via JSX.
 
 
 ```javascript
+{contacts.map( (contact, index) => <option value={contact.name} key={index}>{contact.name}<option/>)}
 ```
 
 
