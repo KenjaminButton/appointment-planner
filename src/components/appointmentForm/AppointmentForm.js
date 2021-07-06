@@ -25,18 +25,21 @@ export const AppointmentForm = ({
       <input
         type="text"
         onChange={({target}) => setTitle(target.value)}
-        value={title} 
+        value={title}
+        required
       />
       <input
         type="date"
         value={date}
         onChange={({target}) => setDate(target.value)}
         min={getTodayString()}
+        required
       />
       <input
         type="time"
         value={time} 
         onChange={({target}) => setTime(target.value)}
+        required
       />
       <ContactPicker
         contacts={contacts}
